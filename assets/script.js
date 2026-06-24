@@ -17,6 +17,7 @@ const slides = [
     }
 ];
 
+// Etape 2 - Ajoutez des Event Listeners sur les fleches
 let currentIndex = 0;
 
 const arrowLeft = document.querySelector(".arrow_left");
@@ -25,7 +26,7 @@ const bannerImg = document.querySelector(".banner-img");
 const tagLine = document.querySelector("#banner p");
 const dotsContainer = document.querySelector(".dots");
 
-// Création des dots
+// Etape 3 - Ajoutez des bullet points au slider
 slides.forEach((slide, index) => {
     const dot = document.createElement("div");
     dot.classList.add("dot");
@@ -35,31 +36,29 @@ slides.forEach((slide, index) => {
     dotsContainer.appendChild(dot);
 });
 
-// Fonction qui met à jour l'image, le texte et les dots
+// Etape 4 - Modifiez le slide au clic sur le bouton
 function updateSlide() {
-    // Mise à jour de l'image
     bannerImg.src = `./assets/images/slideshow/${slides[currentIndex].image}`;
-
-    // Mise à jour du texte
     tagLine.innerHTML = slides[currentIndex].tagLine;
-
-    // Mise à jour des dots
     document.querySelector(".dot_selected").classList.remove("dot_selected");
     dotsContainer.children[currentIndex].classList.add("dot_selected");
 }
 
-// Clic flèche droite → on avance
+// Etape 2 - Ajoutez des Event Listeners sur les fleches
 arrowRight.addEventListener("click", () => {
+    console.log("Clic sur la flèche droite");
+    // Etape 5 - Mettez en place le défilement infini sur le carrousel
     if (currentIndex === slides.length - 1) {
-        currentIndex = 0; // Retour à la première slide
+        currentIndex = 0;
     } else {
         currentIndex = currentIndex + 1;
     }
+    // Etape 4 - Modifiez le slide au clic sur le bouton
     updateSlide();
 });
 
-// Clic flèche gauche
 arrowLeft.addEventListener("click", () => {
+    console.log("Clic sur la flèche gauche");
     if (currentIndex === 0) {
         currentIndex = slides.length - 1;
     } else {
